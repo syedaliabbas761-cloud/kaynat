@@ -4,14 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Will you be my Valentine?</title>
-
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
 
   <style>
     :root {
       --bg1: #ffd6e7;
       --bg2: #ffeef6;
-      --card: #ffffffe8;
+      --card: #ffffffcc;
       --yes: #ff3b7a;
       --yesHover: #ff1f68;
     }
@@ -26,7 +25,7 @@
       background: radial-gradient(circle at top, var(--bg2), var(--bg1));
       font-family: system-ui, sans-serif;
       overflow: hidden;
-      padding: 12px;
+      padding: 16px;
       touch-action: manipulation;
     }
 
@@ -38,84 +37,89 @@
     }
 
     .card {
-      width: min(720px, 94vw);
-      padding: 24px 18px;
+      width: min(720px, 92vw);
+      padding: 26px 22px;
       background: var(--card);
-      backdrop-filter: blur(12px);
-      border-radius: 24px;
+      backdrop-filter: blur(10px);
+      border-radius: 22px;
       text-align: center;
-      box-shadow: 0 20px 70px rgba(0,0,0,0.18);
+      box-shadow: 0 18px 60px rgba(0,0,0,.15);
     }
 
-    .art { width: min(260px, 76vw); margin: 0 auto 10px; display: block; }
+    .art {
+      width: min(260px, 80vw);
+      margin: 0 auto 10px;
+      display: block;
+    }
 
     h1 {
-      font-size: clamp(26px, 6.5vw, 46px);
-      margin: 12px 0 16px;
+      font-size: clamp(26px, 5vw, 44px);
+      margin: 12px 0 18px;
     }
 
     .button-zone {
       position: relative;
-      width: 100%;
-      max-width: 520px;
-      height: 240px;           /* plenty of chase room on phones */
-      margin: 20px auto;
+      width: min(520px, 92%);
+      height: 220px;
+      margin: 0 auto 10px;
     }
 
     button {
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      padding: 18px 40px;
-      font-size: clamp(18px, 4.5vw, 21px);
-      font-weight: 900;
+      padding: 18px 36px;
+      font-size: 20px;
+      font-weight: 800;
       border-radius: 999px;
       border: none;
       cursor: pointer;
+      box-shadow: 0 10px 24px rgba(0,0,0,.14);
       user-select: none;
       -webkit-tap-highlight-color: transparent;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.18);
-      transition: transform 0.13s ease-out, background 0.13s;
+      transition: transform .14s ease, background .14s ease;
+      min-width: 130px;
     }
 
     #yesBtn {
-      left: 8%;
+      left: 10%;
       background: var(--yes);
-      color: white;
+      color: #fff;
     }
     #yesBtn:hover { background: var(--yesHover); }
 
     #noBtn {
-      right: 8%;
-      background: #d1d5db;
-      color: #1f2937;
+      right: 10%;
+      background: #e5e7eb;
+      color: #111827;
     }
 
     .hint {
-      margin-top: 12px;
+      margin-top: 10px;
       font-size: 14px;
-      opacity: 0.8;
+      opacity: .75;
     }
 
     .result {
       display: none;
       margin-top: 20px;
-      animation: pop 0.4s ease-out;
+      animation: pop .4s ease;
     }
 
     .result h2 {
-      font-size: clamp(38px, 8vw, 56px);
+      font-size: clamp(34px, 6vw, 50px);
+      margin: 12px 0;
       color: var(--yes);
     }
 
     @keyframes pop {
-      from { transform: scale(0.92); opacity: 0; }
-      to   { transform: scale(1);    opacity: 1; }
+      from { transform: scale(.94); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
     }
 
     @media (max-width: 480px) {
       .button-zone { height: 260px; }
-      button { padding: 16px 36px; font-size: 19px; min-width: 110px; }
+      button { padding: 16px 32px; font-size: 19px; min-width: 120px; }
     }
   </style>
 </head>
@@ -125,10 +129,15 @@
 
   <main class="card">
     <svg class="art" viewBox="0 0 320 240" xmlns="http://www.w3.org/2000/svg">
-      <!-- (keeping your original cute animal SVG – no change here) -->
       <defs>
-        <linearGradient id="fur" x1="0" x2="1"><stop offset="0" stop-color="#f7c7a1"/><stop offset="1" stop-color="#f2a97b"/></linearGradient>
-        <linearGradient id="heart" x1="0" x2="1"><stop offset="0" stop-color="#ff4d7d"/><stop offset="1" stop-color="#ff1f68"/></linearGradient>
+        <linearGradient id="fur" x1="0" x2="1">
+          <stop offset="0" stop-color="#f7c7a1"/>
+          <stop offset="1" stop-color="#f2a97b"/>
+        </linearGradient>
+        <linearGradient id="heart" x1="0" x2="1">
+          <stop offset="0" stop-color="#ff4d7d"/>
+          <stop offset="1" stop-color="#ff1f68"/>
+        </linearGradient>
       </defs>
       <path d="M250 50 C250 33 270 25 282 38 C294 25 314 33 314 50 C314 78 282 92 282 106 C282 92 250 78 250 50Z" fill="url(#heart)"/>
       <path d="M90 120 C90 70 140 40 190 60 C240 40 290 70 290 120 C290 180 240 210 190 210 C140 210 90 180 90 120Z" fill="url(#fur)"/>
@@ -139,125 +148,121 @@
       <path d="M190 144 C186 144 182 148 182 152 C182 160 190 164 190 170 C190 164 198 160 198 152 C198 148 194 144 190 144Z" fill="#ff7aa2"/>
     </svg>
 
-    <h1>Nirali, will you be my Valentine? 💕</h1>
+    <h1>Nirali will you be my valentine?</h1>
 
     <div class="button-zone" id="zone">
-      <button id="yesBtn">Yes!! 🥰</button>
-      <button id="noBtn">No 😒</button>
+      <button id="yesBtn">Yes 🥰</button>
+      <button id="noBtn">No</button>
     </div>
 
-    <div class="hint" id="hint">Good luck catching the "No" button lol</div>
+    <div class="hint" id="hint">“No” is being very shy today… 😏</div>
 
     <div class="result" id="result">
-      <h2>YAYYYYY! 💖🎉</h2>
-      <img src="https://media.giphy.com/media/26ufdipQqU2lhNA4g/giphy.gif" alt="Fireworks" style="width: min(380px, 90vw); border-radius: 16px; margin-top: 16px;">
+      <h2>YAY! 💕🎉</h2>
+      <img src="https://media.giphy.com/media/26ufdipQqU2lhNA4g/giphy.gif" alt="Fireworks" style="width:min(380px,90vw);margin-top:16px;border-radius:12px;">
     </div>
   </main>
 
   <script>
-    const zone   = document.getElementById("zone");
-    const yesBtn = document.getElementById("yesBtn");
-    const noBtn  = document.getElementById("noBtn");
-    const result = document.getElementById("result");
-    const hint   = document.getElementById("hint");
+    const zone   = document.getElementById('zone');
+    const yesBtn = document.getElementById('yesBtn');
+    const noBtn  = document.getElementById('noBtn');
+    const result = document.getElementById('result');
+    const hint   = document.getElementById('hint');
 
     // Confetti
-    const canvas = document.getElementById("confettiCanvas");
-    function resizeCanvas() {
+    const canvas = document.getElementById('confettiCanvas');
+    function resize() {
       const dpr = window.devicePixelRatio || 1;
       canvas.width = window.innerWidth * dpr;
       canvas.height = window.innerHeight * dpr;
-      canvas.style.width = "100vw";
-      canvas.style.height = "100vh";
+      canvas.style.width = '100vw';
+      canvas.style.height = '100vh';
     }
-    resizeCanvas();
-    window.addEventListener("resize", resizeCanvas);
+    resize();
+    window.addEventListener('resize', resize);
 
-    const confetti = confetti.create(canvas, { resize: false, useWorker: true });
+    const confetti = confetti.create(canvas, {resize:false, useWorker:true});
 
-    function bigConfetti() {
-      confetti({ particleCount: 220, spread: 100, startVelocity: 50, origin: { y: 0.6 } });
-      setTimeout(() => confetti({ particleCount: 180, spread: 140, origin: { y: 0.4 } }), 300);
+    function celebrate() {
+      confetti({particleCount:180, spread:90, startVelocity:45, origin:{y:0.6}});
+      setTimeout(() => confetti({particleCount:240, spread:120, origin:{y:0.5}}), 250);
     }
 
     // Yes grows
     let yesScale = 1;
     function growYes() {
-      yesScale = Math.min(2.6, yesScale + 0.18);
+      yesScale = Math.min(2.5, yesScale + 0.15);
       yesBtn.style.transform = `translateY(-50%) scale(${yesScale})`;
     }
 
-    // ─── AGGRESSIVE NO MOVEMENT ───────────────────────────────────────
-    function getSafeRandom(max) {
-      return Math.random() * max * (Math.random() < 0.5 ? 1 : -1);
-    }
+    // ─── Core escape function ─────────────────────────────────────
+    function flee(e) {
+      const zoneRect = zone.getBoundingClientRect();
+      const btnRect  = noBtn.getBoundingClientRect();
 
-    function escapeNo(e) {
-      const rect = zone.getBoundingClientRect();
-      const btnRect = noBtn.getBoundingClientRect();
+      const touchX = e.clientX ?? e.touches?.[0]?.clientX ?? zoneRect.width / 2;
+      const touchY = e.clientY ?? e.touches?.[0]?.clientY ?? zoneRect.height / 2;
 
-      // Direction away from touch point + big random component
-      let dx = (btnRect.left + btnRect.width/2) - (e.clientX || e.touches?.[0]?.clientX || rect.width/2);
-      let dy = (btnRect.top  + btnRect.height/2) - (e.clientY || e.touches?.[0]?.clientY || rect.height/2);
+      let dx = (btnRect.left + btnRect.width / 2) - touchX;
+      let dy = (btnRect.top  + btnRect.height / 2) - touchY;
+      const len = Math.hypot(dx, dy) || 1;
+      dx /= len;
+      dy /= len;
 
-      const dist = Math.hypot(dx, dy) || 1;
-      dx /= dist;
-      dy /= dist;
+      // Main push: 200–260 px away + small random offset
+      const pushDist = 220 + Math.random() * 40;
+      let newLeft = (btnRect.left - zoneRect.left) + dx * pushDist + (Math.random() - 0.5) * 60;
+      let newTop  = (btnRect.top  - zoneRect.top)  + dy * pushDist + (Math.random() - 0.5) * 50;
 
-      // Very aggressive base push + randomness
-      const push = 180 + Math.random() * 140;
-      let newLeft = (btnRect.left - rect.left) + dx * push + getSafeRandom(120);
-      let newTop  = (btnRect.top  - rect.top)  + dy * push + getSafeRandom(100);
+      // Clamp inside zone
+      newLeft = Math.max(30, Math.min(zoneRect.width - btnRect.width - 30, newLeft));
+      newTop  = Math.max(20, Math.min(zoneRect.height - btnRect.height - 20, newTop));
 
-      // Keep inside zone with margin
-      newLeft = Math.max(20, Math.min(rect.width - btnRect.width - 20, newLeft));
-      newTop  = Math.max(10, Math.min(rect.height - btnRect.height - 10, newTop));
-
-      noBtn.style.left = newLeft + "px";
-      noBtn.style.top  = newTop  + "px";
-      noBtn.style.transform = "none";
+      noBtn.style.left = newLeft + 'px';
+      noBtn.style.top  = newTop  + 'px';
+      noBtn.style.transform = 'none';
 
       growYes();
     }
 
-    // ─── MOBILE-FIRST ESCAPE TRIGGERS ────────────────────────────────
-    noBtn.addEventListener("touchstart", e => {
-      e.preventDefault();
-      escapeNo(e);
+    // ─── Mobile priority: touchstart is king ──────────────────────
+    noBtn.addEventListener('touchstart', e => {
+      e.preventDefault();           // stop click from firing
+      flee(e);
     }, { passive: false });
 
-    noBtn.addEventListener("pointerdown", e => {
-      if (e.pointerType === "touch") {
-        e.preventDefault();
-      }
-      escapeNo(e);
+    // Also catch pointer events (covers mouse too)
+    noBtn.addEventListener('pointerdown', e => {
+      if (e.isPrimary) flee(e);
+      if (e.pointerType === 'touch') e.preventDefault();
     });
 
-    // Fallback: if someone is chasing with finger held down
-    zone.addEventListener("pointermove", e => {
-      if (e.pointerType !== "touch") return;
-      const btnRect = noBtn.getBoundingClientRect();
-      const d = Math.hypot(
-        (btnRect.left + btnRect.width/2) - e.clientX,
-        (btnRect.top + btnRect.height/2) - e.clientY
+    // Bonus: if they drag finger near it
+    zone.addEventListener('pointermove', e => {
+      if (e.pointerType !== 'touch') return;
+      const r = noBtn.getBoundingClientRect();
+      const dist = Math.hypot(
+        r.left + r.width/2 - e.clientX,
+        r.top + r.height/2 - e.clientY
       );
-      if (d < 220) escapeNo(e);   // big trigger radius
+      if (dist < 180) flee(e);
     });
 
-    // Block any miraculous click
-    noBtn.addEventListener("click", e => {
+    // Final kill-switch for click
+    noBtn.addEventListener('click', e => {
       e.preventDefault();
-      e.stopPropagation();
-      escapeNo(e);
+      e.stopImmediatePropagation();
+      flee(e);
     });
 
     // Yes wins
-    yesBtn.addEventListener("click", () => {
-      zone.style.display = "none";
-      hint.style.display = "none";
-      result.style.display = "block";
-      resizeCanvas();
-      bigConfetti();
+    yesBtn.addEventListener('click', () => {
+      zone.style.display = 'none';
+      hint.style.display = 'none';
+      result.style.display = 'block';
+      resize();
+      celebrate();
     });
   </script>
 </body>
